@@ -1,0 +1,46 @@
+{
+    "category": "plugins",
+    "display": "Generate SnapTrade Signature",
+    "fields": {
+        "AAD": {
+            "caption": "consumerKey",
+            "editor": "DynamicValue",
+            "long_text": true,
+            "name": "consumerKey",
+            "rank": 0,
+            "value": "text"
+        },
+        "AAE": {
+            "caption": "path",
+            "editor": "StaticText",
+            "long_text": true,
+            "name": "path",
+            "rank": 1
+        },
+        "AAF": {
+            "caption": "query",
+            "editor": "DynamicValue",
+            "long_text": true,
+            "name": "query",
+            "rank": 2,
+            "value": "text"
+        },
+        "AAG": {
+            "caption": "contentJson",
+            "editor": "DynamicValue",
+            "long_text": true,
+            "name": "contentjson",
+            "rank": 3,
+            "value": "text"
+        }
+    },
+    "return_value": {
+        "AAH": {
+            "caption": "signature",
+            "name": "signature",
+            "rank": 0,
+            "value": "text"
+        }
+    },
+    "type": "server_side"
+}

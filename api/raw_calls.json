@@ -1,0 +1,15 @@
+{
+    "calls": {
+        "AAK": {
+            "method": "get",
+            "name": "login_user",
+            "publish_as": "data",
+            "rank": 0,
+            "should_reinitialize": true,
+            "url": "https://api.snaptrade.com/api/v1/snapTrade/login"
+        }
+    },
+    "human": "Snaptrade",
+    "shared_headers": {
+    }
+}

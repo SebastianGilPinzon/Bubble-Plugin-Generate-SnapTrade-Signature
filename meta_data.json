@@ -1,0 +1,11 @@
+{
+    "categories": {
+        "0": "data (things)"
+    },
+    "data_tracked": false,
+    "description": "Generate SnapTrade Signature",
+    "image": "//meta-q.cdn.bubble.io/f1768483115838x228487686400280740/d6f1b12a-d411-4792-bc4d-16a3d8191554_small.jpg",
+    "license": "open_source",
+    "name": "Generate SnapTrade Signature",
+    "sa_node_version": 22
+}
