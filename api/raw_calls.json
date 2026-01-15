@@ -1,15 +1,52 @@
 {
     "calls": {
         "AAK": {
-            "method": "get",
+            "body": "{}",
+            "headers": {
+                "AAL": {
+                    "key": "Signature",
+                    "private": true,
+                    "value": ""
+                },
+                "AAM": {
+                    "key": "Content-Type",
+                    "private": true,
+                    "value": "application/json"
+                }
+            },
+            "method": "post",
             "name": "login_user",
-            "publish_as": "data",
+            "params": {
+                "AAN": {
+                    "key": "clientId",
+                    "optional": true,
+                    "private": true,
+                    "value": ""
+                },
+                "AAO": {
+                    "key": "timestamp",
+                    "optional": true,
+                    "private": true,
+                    "value": ""
+                },
+                "AAP": {
+                    "key": "userId",
+                    "optional": true,
+                    "private": true,
+                    "value": ""
+                },
+                "AAQ": {
+                    "key": "userSecret",
+                    "optional": true,
+                    "private": true,
+                    "value": ""
+                }
+            },
+            "publish_as": "action",
             "rank": 0,
             "should_reinitialize": true,
             "url": "https://api.snaptrade.com/api/v1/snapTrade/login"
         }
     },
-    "human": "Snaptrade",
-    "shared_headers": {
-    }
+    "human": "Snaptrade"
 }
