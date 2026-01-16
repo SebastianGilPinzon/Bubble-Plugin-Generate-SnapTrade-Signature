@@ -14,6 +14,7 @@
                     "value": "application/json"
                 }
             },
+            "initialized": true,
             "method": "post",
             "name": "login_user",
             "params": {
@@ -44,9 +45,13 @@
             },
             "publish_as": "action",
             "rank": 0,
-            "should_reinitialize": true,
+            "ret_value": "api.1768424164635x805124384536658000.plugin_api.AAK",
+            "should_reinitialize": false,
+            "types": "{\"plugin_api.AAK\":{\"caption\":\"login_user\",\"fields\":{\"_p_redirectURI\":{\"ret_btype\":\"text\",\"caption\":\"redirectURI\",\"sample_value\":\"string value\",\"path\":[\"redirectURI\"]},\"_p_sessionId\":{\"ret_btype\":\"text\",\"caption\":\"sessionId\",\"sample_value\":\"string value\",\"path\":[\"sessionId\"]}}}}",
             "url": "https://api.snaptrade.com/api/v1/snapTrade/login"
         }
     },
-    "human": "Snaptrade"
+    "human": "Snaptrade",
+    "shared_headers": {
+    }
 }
