@@ -1,0 +1,47 @@
+{
+    "category": "plugins",
+    "display": "(Empty Body) Generate SnapTrade Signature  (copy)",
+    "fields": {
+        "AAW": {
+            "caption": "consumerKey",
+            "editor": "DynamicValue",
+            "long_text": true,
+            "name": "consumerKey",
+            "rank": 0,
+            "value": "text"
+        },
+        "AAX": {
+            "caption": "path",
+            "editor": "DynamicValue",
+            "long_text": true,
+            "name": "path",
+            "rank": 1,
+            "value": "text"
+        },
+        "AAY": {
+            "caption": "query",
+            "editor": "DynamicValue",
+            "long_text": true,
+            "name": "query",
+            "rank": 2,
+            "value": "text"
+        },
+        "AAZ": {
+            "caption": "contentJson",
+            "editor": "DynamicValue",
+            "long_text": true,
+            "name": "contentjson",
+            "rank": 3,
+            "value": "text"
+        }
+    },
+    "return_value": {
+        "AAH": {
+            "caption": "signature",
+            "name": "signature",
+            "rank": 0,
+            "value": "text"
+        }
+    },
+    "type": "server_side"
+}

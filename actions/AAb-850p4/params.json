@@ -1,0 +1,92 @@
+{
+    "category": "plugins",
+    "display": "List Account Balances",
+    "fields": {
+        "AAc": {
+            "caption": "consumerKey",
+            "editor": "DynamicValue",
+            "name": "consumerkey",
+            "rank": 0,
+            "value": "text"
+        },
+        "AAd": {
+            "caption": "clientId",
+            "editor": "DynamicValue",
+            "name": "clientid",
+            "rank": 1,
+            "value": "text"
+        },
+        "AAe": {
+            "caption": "userId",
+            "editor": "DynamicValue",
+            "name": "userid",
+            "rank": 2,
+            "value": "text"
+        },
+        "AAf": {
+            "caption": "userSecret",
+            "editor": "DynamicValue",
+            "name": "usersecret",
+            "rank": 3,
+            "value": "text"
+        },
+        "AAg": {
+            "caption": "accountId",
+            "editor": "DynamicValue",
+            "name": "accountid",
+            "rank": 4,
+            "value": "text"
+        }
+    },
+    "return_value": {
+        "AAh": {
+            "caption": "success",
+            "name": "success",
+            "rank": 0,
+            "value": "boolean"
+        },
+        "AAi": {
+            "caption": "error_message",
+            "name": "error_message",
+            "rank": 1,
+            "value": "text"
+        },
+        "AAj": {
+            "caption": "balances_json",
+            "name": "balances_json",
+            "rank": 2,
+            "value": "text"
+        },
+        "AAk": {
+            "caption": "cash",
+            "name": "cash",
+            "rank": 3,
+            "value": "number"
+        },
+        "AAl": {
+            "caption": "buying_power",
+            "name": "buying_power",
+            "rank": 4,
+            "value": "number"
+        },
+        "AAm": {
+            "caption": "currency_code",
+            "name": "currency_code",
+            "rank": 5,
+            "value": "text"
+        },
+        "AAo": {
+            "caption": "balances_lines",
+            "name": "balances_lines",
+            "rank": 6,
+            "value": "text"
+        },
+        "AAp": {
+            "caption": "balances_count",
+            "name": "balances_count",
+            "rank": 7,
+            "value": "number"
+        }
+    },
+    "type": "server_side"
+}

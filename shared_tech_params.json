@@ -1,4 +1,10 @@
 {
+    "assets": {
+        "AAn": {
+            "name": "Specific Actions Documentation",
+            "url": "//meta-q.cdn.bubble.io/f1768933395567x946899300151277000/Specific%20Actions%20Documentation.md"
+        }
+    },
     "dependencies": {
         "plugin_api_version": 4,
         "use_jquery": true
