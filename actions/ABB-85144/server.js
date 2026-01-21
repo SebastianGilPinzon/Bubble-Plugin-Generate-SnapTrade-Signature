@@ -100,7 +100,7 @@ const symbol = extractSymbol(a);
 const currencyCode = sanitize(a.currency ? a.currency.code : "USD");
 const description = sanitize(a.description || "");
 const externalRefId = sanitize(a.external_reference_id || "");
-const rawJson = sanitize(JSON.stringify(a));
+const rawJson = "";
 return activityId + "|" + type + "|" + tradeDate + "|" + settlementDate + "|" + amount + "|" + price + "|" + units + "|" + fee + "|" + symbol + "|" + currencyCode + "|" + description + "|" + externalRefId + "|" + rawJson;
 });
 return { success: true, error_message: null, activities_json: JSON.stringify(allActivities), activities_lines: lines.length > 0 ? lines.join("\n") : "", activities_count: allActivities.length };
