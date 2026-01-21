@@ -43,12 +43,45 @@ function formatDate(dateStr) {
 if (!dateStr) return "";
 return sanitize(dateStr);
 }
+function normalizeDate(input) {
+if (!input || typeof input !== "string") return null;
+const s = input.trim();
+if (/^\d{4}-\d{2}-\d{2}$/.test(s)) return s;
+if (/^\d{4}-\d{2}-\d{2}T/.test(s)) return s.split("T")[0];
+let m = s.match(/^(\d{1,2})\/(\d{1,2})\/(\d{2,4})$/);
+if (m) {
+let y = m[3].length === 2 ? "20" + m[3] : m[3];
+return y + "-" + m[1].padStart(2, "0") + "-" + m[2].padStart(2, "0");
+}
+m = s.match(/^(\d{1,2})-(\d{1,2})-(\d{2,4})$/);
+if (m) {
+let y = m[3].length === 2 ? "20" + m[3] : m[3];
+return y + "-" + m[1].padStart(2, "0") + "-" + m[2].padStart(2, "0");
+}
+const months = {Jan:1,Feb:2,Mar:3,Apr:4,May:5,Jun:6,Jul:7,Aug:8,Sep:9,Oct:10,Nov:11,Dec:12};
+m = s.match(/^([A-Za-z]{3})\s+(\d{1,2}),?\s+(\d{4})$/);
+if (m && months[m[1]]) {
+return m[3] + "-" + String(months[m[1]]).padStart(2, "0") + "-" + m[2].padStart(2, "0");
+}
+const d = new Date(s);
+if (!isNaN(d.getTime())) {
+return d.toISOString().split("T")[0];
+}
+return null;
+}
+function getStartDate(inputDate) {
+const normalized = normalizeDate(inputDate);
+if (normalized) return normalized;
+const d = new Date();
+d.setDate(d.getDate() - 90);
+return d.toISOString().split("T")[0];
+}
 const consumerKey = (properties.consumerkey || "").trim();
 const clientId = (properties.clientid || "").trim();
 const userId = (properties.userid || "").trim();
 const userSecret = (properties.usersecret || "").trim();
 const accountId = (properties.accountid || "").trim();
-const startDate = (properties.startdate || "").trim();
+const startDate = getStartDate((properties.startdate || "").trim());
 if (!consumerKey) return { success: false, error_message: "consumerKey is required", activities_json: null, activities_lines: "", activities_count: 0 };
 if (!clientId) return { success: false, error_message: "clientId is required", activities_json: null, activities_lines: "", activities_count: 0 };
 if (!userId) return { success: false, error_message: "userId is required", activities_json: null, activities_lines: "", activities_count: 0 };
@@ -62,8 +95,7 @@ let hasMore = true;
 try {
 while (hasMore) {
 const timestamp = Math.floor(Date.now() / 1000);
-let queryParams = "clientId=" + encodeURIComponent(clientId) + "&userId=" + encodeURIComponent(userId) + "&userSecret=" + encodeURIComponent(userSecret) + "&timestamp=" + encodeURIComponent(timestamp) + "&limit=" + limit + "&offset=" + offset;
-if (startDate) queryParams += "&startDate=" + encodeURIComponent(startDate);
+let queryParams = "clientId=" + encodeURIComponent(clientId) + "&userId=" + encodeURIComponent(userId) + "&userSecret=" + encodeURIComponent(userSecret) + "&timestamp=" + encodeURIComponent(timestamp) + "&limit=" + limit + "&offset=" + offset + "&startDate=" + encodeURIComponent(startDate);
 const signature = generateSignature(consumerKey, path, queryParams, null);
 const url = "https://api.snaptrade.com" + path + "?" + queryParams;
 const headers = { "Signature": signature, "Content-Type": "application/json" };
