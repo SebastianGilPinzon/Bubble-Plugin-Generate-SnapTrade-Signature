@@ -1,0 +1,81 @@
+{
+    "category": "plugins",
+    "display": "List Account Activities",
+    "fields": {
+        "ABC": {
+            "caption": "consumerkey",
+            "editor": "DynamicValue",
+            "name": "consumerkey",
+            "rank": 0,
+            "value": "text"
+        },
+        "ABD": {
+            "caption": "clientid",
+            "editor": "DynamicValue",
+            "name": "clientid",
+            "rank": 1,
+            "value": "text"
+        },
+        "ABE": {
+            "caption": "userid",
+            "editor": "DynamicValue",
+            "name": "userid",
+            "rank": 2,
+            "value": "text"
+        },
+        "ABF": {
+            "caption": "usersecret",
+            "editor": "DynamicValue",
+            "name": "usersecret",
+            "rank": 3,
+            "value": "text"
+        },
+        "ABG": {
+            "caption": "accountid",
+            "editor": "DynamicValue",
+            "name": "accountid",
+            "rank": 4,
+            "value": "text"
+        },
+        "ABH": {
+            "caption": "startdate",
+            "editor": "DynamicValue",
+            "name": "startdate",
+            "rank": 5,
+            "value": "text"
+        }
+    },
+    "return_value": {
+        "ABI": {
+            "caption": "success",
+            "name": "success",
+            "rank": 0,
+            "value": "boolean"
+        },
+        "ABJ": {
+            "caption": "error_message",
+            "name": "error_message",
+            "rank": 1,
+            "value": "text"
+        },
+        "ABK": {
+            "caption": "activities_json",
+            "name": "activities_json",
+            "rank": 2,
+            "value": "text"
+        },
+        "ABL": {
+            "caption": "activities_lines",
+            "name": "activities_lines",
+            "rank": 3,
+            "value": "text"
+        },
+        "ABM": {
+            "caption": "activities_count",
+            "name": "activities_count",
+            "rank": 4,
+            "value": "number"
+        }
+    },
+    "type": "server_side"
+}
