@@ -1,6 +1,7 @@
 async function(properties, context) {
   const crypto = require("crypto");
   const https = require("https");
+  const { URL } = require("url");
 
   function stableStringify(value) {
     if (value === null || value === undefined) return "null";
@@ -63,19 +64,24 @@ async function(properties, context) {
     return fallback;
   }
 
+  // Prevent "[object Object]" in the first field (symbol)
   function extractSymbol(pos) {
-    return sanitize(
-      pick(pos, [
-        "symbol",
-        "symbol.symbol",
-        "symbol.ticker",
-        "security.symbol",
-        "security.ticker",
-        "instrument.symbol",
-        "instrument.ticker",
-        "ticker"
-      ], "")
-    );
+    const v = pick(pos, [
+      "symbol.symbol.symbol",
+      "symbol.symbol.raw_symbol",
+      "symbol.raw_symbol",
+      "symbol.symbol.ticker",
+      "symbol.ticker",
+      "ticker"
+    ], "");
+
+    if (typeof v === "string" || typeof v === "number") return sanitize(v);
+
+    if (v && typeof v === "object") {
+      return sanitize(v.symbol || v.raw_symbol || v.ticker || "");
+    }
+
+    return "";
   }
 
   const consumerKey = (properties.consumerkey || "").trim();
@@ -90,9 +96,12 @@ async function(properties, context) {
   if (!userSecret) return { success: false, error_message: "userSecret is required", positions_json: null, positions_lines: "", positions_count: 0 };
   if (!accountId) return { success: false, error_message: "accountId is required", positions_json: null, positions_lines: "", positions_count: 0 };
 
+  // Timestamp in seconds (10 digits)
   const timestamp = Math.floor(Date.now() / 1000);
+
   const path = "/api/v1/accounts/" + accountId + "/positions";
 
+  // Query order MUST be: clientId,userId,userSecret,timestamp
   const query =
     "clientId=" + encodeURIComponent(clientId) +
     "&userId=" + encodeURIComponent(userId) +
@@ -103,7 +112,10 @@ async function(properties, context) {
   const signature = generateSignature(consumerKey, path, query, null);
 
   const url = "https://api.snaptrade.com" + path + "?" + query;
-  const headers = { "Signature": signature, "Content-Type": "application/json" };
+  const headers = {
+    "Signature": signature,
+    "Content-Type": "application/json"
+  };
 
   try {
     const response = await httpsGet(url, headers);
@@ -130,9 +142,18 @@ async function(properties, context) {
 
     const lines = positions.map((p) => {
       const symbol = extractSymbol(p);
-      const quantity = toNumber(pick(p, ["quantity", "units", "shares", "position", "amount"], 0));
-      const marketValue = toNumber(pick(p, ["market_value", "marketValue", "market_value_usd", "marketValueUsd", "value"], 0));
+
+      // Prefer "units" because SnapTrade returns units
+      const quantity = toNumber(pick(p, ["units", "quantity", "shares", "position", "amount"], 0));
       const price = toNumber(pick(p, ["price", "last_price", "lastPrice", "price_per_share", "pricePerShare"], 0));
+
+      let marketValue = toNumber(pick(p, ["market_value", "marketValue", "market_value_usd", "marketValueUsd", "value"], 0));
+
+      // Kaggle parity: compute MV if missing/0
+      if ((!marketValue || marketValue === 0) && price > 0 && quantity > 0) {
+        marketValue = price * quantity;
+      }
+
       const currencyCode = sanitize(pick(p, ["currency.code", "currency_code", "currencyCode"], "USD"));
       const rawJson = sanitize(JSON.stringify(p));
 
