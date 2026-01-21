@@ -1,0 +1,75 @@
+{
+    "category": "plugins",
+    "display": "List Account Positions",
+    "fields": {
+        "AAr": {
+            "caption": "consumerkey",
+            "editor": "DynamicValue",
+            "name": "consumerkey",
+            "rank": 0,
+            "value": "text"
+        },
+        "AAs": {
+            "caption": "clientid",
+            "editor": "DynamicValue",
+            "name": "clientid",
+            "rank": 1,
+            "value": "text"
+        },
+        "AAt": {
+            "caption": "userid",
+            "editor": "DynamicValue",
+            "name": "userid",
+            "rank": 2,
+            "value": "text"
+        },
+        "AAu": {
+            "caption": "usersecret",
+            "editor": "DynamicValue",
+            "name": "usersecret",
+            "rank": 3,
+            "value": "text"
+        },
+        "AAv": {
+            "caption": "accountid",
+            "editor": "DynamicValue",
+            "name": "accountid",
+            "rank": 4,
+            "value": "text"
+        }
+    },
+    "return_value": {
+        "AAw": {
+            "caption": "success",
+            "name": "success",
+            "rank": 0,
+            "value": "boolean"
+        },
+        "AAx": {
+            "caption": "error_message",
+            "name": "error_message",
+            "rank": 1,
+            "value": "text"
+        },
+        "AAy": {
+            "caption": "positions_json",
+            "name": "positions_json",
+            "rank": 2,
+            "value": "text"
+        },
+        "AAz": {
+            "caption": "positions_lines",
+            "name": "positions_lines",
+            "rank": 3,
+            "value": "text"
+        },
+        "ABA": {
+            "caption": "positions_count",
+            "name": "positions_count",
+            "rank": 4,
+            "value": "number"
+        }
+    },
+    "type": "server_side",
+    "use_packages": true
+}
